@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Simple Banking System</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+  <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop" style="position: fixed;">
+    <source src="/images/video.mp4" type="video/mp4">
+  </video>
+
+  <% let sender;%>
+    <% let receiver;%>
+      <div class="container">
+        <% if(data[0].id==data1){ %>
+          <% sender=data[0]; %>
+            <% receiver=data[1]; %>
+              <% }else{%>
+                <% receiver=data[0]; %>
+                  <% sender=data[1]; %>
+                    <% } %>
+                      <% let senderObject=JSON.stringify(sender); %>
+                        <% let receiverObject=JSON.stringify(receiver); %>
+                          <br><br><br>
+
+                          <div class="card mb-3" style="max-width: 80%; margin: 0 auto; background: none;">
+                            <div class="row g-0">
+                              <div class="col-md-4">
+                                <img src="/images/bank2.jpg" class="img-fluid" alt="piggyBank"
+                                  style="background-size: cover; height: 65vh; width: 100%;">
+                              </div>
+                              <div class="col-md-8">
+                                <div class="card text-dark bg-light text-center" style="height: 65vh;">
+                                  <h3 class="card-header">
+                                    Transfering money from <%= sender.full_name %> to <%= receiver.full_name %>
+                                  </h3>
+                                  <div class="card-body">
+                                    <h5 class="card-title pt-3">Enter the amount you want to transfer</h5>
+                                    <p class="card-text text-muted font-monospace pt-3">Note: This action is not
+                                      reversable.</p>
+                                    <form action="/sendMoney" method="post">
+                                      <div class="input-group mb-3 pt-3" style="width: 30%; margin: 0 auto;">
+                                        <span class="input-group-text shadow">$</span>
+                                        <input type="number" min="1" required class="form-control shadow" name="amount"
+                                          aria-label="Amount (to the nearest dollar)" placeholder="0">
+                                        <span class="input-group-text shadow">.00</span>
+                                      </div>
+                                      <div class="text-center pt-3"><input type="hidden" id="sender" name="sender"
+                                          placeholder="0" value="<%= senderObject %>"></div>
+                                      <div class="text-center"><input type="hidden" id="receiver" name="receiver"
+                                          placeholder="0" value="<%=  receiverObject %>"></div>
+                                      <div class="text-center mt-2"> <input type="submit" class="btn btn-outline-dark shadow"
+                                          value="Transfer Amount"></input></div>
+
+                                    </form>
+                                  </div>
+                                  <div class="card-footer text-muted">
+                                    <h6>Total Balance: $<%= sender.amount %>
+                                    </h6>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+
+
+      </div>
+</body>
+
+</html>
